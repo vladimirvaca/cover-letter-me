@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-background-light: #f8fafc;
+  --color-background-dark: #0f172a;
+  --color-surface-dark: #1e293b;
+  --color-surface-darker: #020617;
+
+  --font-display: "Spline Sans", sans-serif;
+  --font-body: "Noto Sans", sans-serif;
+
+  --radius: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
+}
