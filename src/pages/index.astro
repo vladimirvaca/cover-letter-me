@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.tsx';
 import Developer from '../components/Developer.tsx';
+import TechStack from '../components/TechStack.tsx';
 ---
 
 <Layout>
@@ -9,6 +10,7 @@ import Developer from '../components/Developer.tsx';
     <Header client:load />
     <main class="layout-container flex h-full grow flex-col items-center">
       <Developer />
+      <TechStack />
     </main>
   </div>
 </Layout>
