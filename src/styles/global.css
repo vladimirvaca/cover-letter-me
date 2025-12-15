@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @variant dark (&:where(.dark, .dark *));
 
@@ -9,8 +9,8 @@
   --color-surface-dark: #1e293b;
   --color-surface-darker: #020617;
 
-  --font-display: "Spline Sans", sans-serif;
-  --font-body: "Noto Sans", sans-serif;
+  --font-display: 'Spline Sans', sans-serif;
+  --font-body: 'Noto Sans', sans-serif;
 
   --radius: 1rem;
   --radius-lg: 2rem;
