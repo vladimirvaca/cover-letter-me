@@ -1,0 +1,31 @@
+import React from 'react';
+import { COMPANIES } from '../constants/Constants.ts';
+
+const Experience: React.FC = () => {
+  return (
+    <section className="w-full flex justify-center py-12 md:py-20 px-4 md:px-10" id="experience">
+      <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
+        <div className="flex flex-col items-center gap-8 mb-10 text-center">
+          <p className="text-sm font-bold text-primary uppercase tracking-widest">
+            Previously worked with
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full max-w-4xl items-center justify-items-center opacity-60">
+            {COMPANIES.map((company) => (
+              <div
+                key={company.name}
+                className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 hover:opacity-100 cursor-default"
+              >
+                <span className="material-symbols-outlined text-4xl">{company.icon}</span>
+                <span className="text-xl font-bold font-display text-black dark:text-white">
+                  {company.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Experience;
