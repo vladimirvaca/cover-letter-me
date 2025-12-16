@@ -3,7 +3,7 @@ import { COMPANIES } from '../constants/Constants.ts';
 
 const Experience: React.FC = () => {
   return (
-    <section className="w-full flex justify-center py-12 md:py-20 px-4 md:px-10" id="experience">
+    <section className="w-full flex justify-center py-12 md:py-10 px-4 md:px-10" id="experience">
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div className="flex flex-col items-center gap-8 mb-10 text-center">
           <p className="text-sm font-bold text-primary uppercase tracking-widest">
@@ -13,12 +13,15 @@ const Experience: React.FC = () => {
             {COMPANIES.map((company) => (
               <div
                 key={company.name}
-                className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 hover:opacity-100 cursor-default"
+                className="flex flex-col items-center justify-center gap-4 grayscale hover:grayscale-0 transition-all duration-300 hover:opacity-100 cursor-default"
               >
-                <span className="material-symbols-outlined text-4xl">{company.icon}</span>
-                <span className="text-xl font-bold font-display text-black dark:text-white">
-                  {company.name}
-                </span>
+                <div className={`${company.size} flex items-center justify-center`}>
+                  <img
+                    src={`/src/assets/icons/${company.icon}`}
+                    alt={`${company.name} logo`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
               </div>
             ))}
           </div>

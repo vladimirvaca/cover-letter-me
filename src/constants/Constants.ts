@@ -37,10 +37,10 @@ export const TECH_STACK: TechCategory[] = [
 ];
 
 export const COMPANIES: Company[] = [
-  { name: 'TechFlow', icon: 'pentagon' },
-  { name: 'DropSource', icon: 'water_drop' },
-  { name: 'FastNet', icon: 'bolt' },
-  { name: 'HiveMind', icon: 'hive' },
+  { name: 'ioet', icon: 'ioet.png', size: 'w-30 h-30' },
+  { name: 'IBM', icon: 'ibm.png', size: 'w-20 h-20' },
+  { name: 'Thoughtworks', icon: 'thoughtworks.png', size: 'w-35 h-35' },
+  { name: 'Encora', icon: 'encora.webp', size: 'w-20 h-20' },
 ];
 
 export const PROJECTS: Project[] = [
@@ -65,3 +65,9 @@ export const PROJECTS: Project[] = [
     category: 'E-Commerce',
   },
 ];
+
+export const SOCIAL_MEDIA: Record<string, string> = {
+  LinkedIn: 'https://www.linkedin.com/in/vladimir-vaca-5a08aba7/',
+  GitHub: 'https://github.com/vladimirvaca',
+  GitLab: 'https://gitlab.com/vladimirvaca',
+};

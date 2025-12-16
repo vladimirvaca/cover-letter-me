@@ -3,12 +3,12 @@ import { PROJECTS } from '../constants/Constants.ts';
 
 const Projects: React.FC = () => {
   return (
-    <section className="w-full flex justify-center py-12 px-4 md:px-10" id="work">
+    <section className="w-full flex justify-center py-12 px-4 md:px-10" id="projects">
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div className="flex items-center gap-3 mb-8">
           <span className="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
           <h2 className="text-black dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em]">
-            Selected Work
+            Projects
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

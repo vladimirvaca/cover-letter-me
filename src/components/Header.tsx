@@ -53,15 +53,15 @@ const Header: React.FC = () => {
                 </a>
                 <a
                   className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
-                  href="#work"
-                >
-                  Work
-                </a>
-                <a
-                  className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
                   href="#experience"
                 >
                   Experience
+                </a>
+                <a
+                  className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
+                  href="#projects"
+                >
+                  Projects
                 </a>
               </div>
 

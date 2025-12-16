@@ -30,10 +30,13 @@ const Developer: React.FC = () => {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4 justify-center w-full">
-                <button className="flex min-w-[140px] cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-8 bg-primary text-white text-base font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                <a
+                  href="#work"
+                  className="flex min-w-[140px] cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-8 bg-primary text-white text-base font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20"
+                >
                   <span>View Projects</span>
                   <span className="material-symbols-outlined text-lg">arrow_downward</span>
-                </button>
+                </a>
                 <a
                   className="flex min-w-[140px] cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-8 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20 text-black dark:text-white text-base font-bold transition-all border border-black/10 dark:border-white/10 shadow-sm"
                   href="#"

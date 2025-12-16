@@ -21,4 +21,5 @@ export interface TechCategory {
 export interface Company {
   name: string;
   icon: string;
+  size: string;
 }
