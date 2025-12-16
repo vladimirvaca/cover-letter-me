@@ -3,6 +3,9 @@ import ioetLogo from '../assets/icons/ioet.png';
 import ibmLogo from '../assets/icons/ibm.png';
 import thoughtworksLogo from '../assets/icons/thoughtworks.png';
 import encoraLogo from '../assets/icons/encora.webp';
+import githubIcon from '../assets/icons/github.svg';
+import linkedinIcon from '../assets/icons/linkedin.svg';
+import gitlabIcon from '../assets/icons/gitlab.svg';
 
 export const TECH_STACK: TechCategory[] = [
   {
@@ -70,8 +73,12 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-export const SOCIAL_MEDIA: Record<string, string> = {
-  LinkedIn: 'https://www.linkedin.com/in/vladimir-vaca-5a08aba7/',
-  GitHub: 'https://github.com/vladimirvaca',
-  GitLab: 'https://gitlab.com/vladimirvaca',
-};
+export const SOCIAL_MEDIA = [
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/vladimir-vaca-5a08aba7/',
+    icon: linkedinIcon.src,
+  },
+  { name: 'GitHub', url: 'https://github.com/vladimirvaca', icon: githubIcon.src },
+  { name: 'GitLab', url: 'https://gitlab.com/vladimirvaca', icon: gitlabIcon.src },
+];

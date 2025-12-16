@@ -1,7 +1,4 @@
 import React from 'react';
-import GithubIcon from '../assets/icons/github.svg';
-import LinkedinIcon from '../assets/icons/linkedin.svg';
-import GitlabIcon from '../assets/icons/gitlab.svg';
 import { SOCIAL_MEDIA } from '../constants/Constants.ts';
 
 const Footer: React.FC = () => {
@@ -23,30 +20,17 @@ const Footer: React.FC = () => {
           Say Hello
         </a>
         <div className="flex gap-8 mt-12">
-          <a
-            className="text-black/40 dark:text-white/40 hover:text-primary transition-colors"
-            href={SOCIAL_MEDIA['LinkedIn']}
-            target="_blank"
-          >
-            <span className="sr-only">LinkedIn</span>
-            <img src={LinkedinIcon.src} alt="" className="h-6 w-6" />
-          </a>
-          <a
-            className="text-black/40 dark:text-white/40 hover:text-primary transition-colors"
-            href={SOCIAL_MEDIA['GitHub']}
-            target="_blank"
-          >
-            <span className="sr-only">GitHub</span>
-            <img src={GithubIcon.src} alt="" className="h-6 w-6" />
-          </a>
-          <a
-            className="text-black/40 dark:text-white/40 hover:text-primary transition-colors"
-            href={SOCIAL_MEDIA['GitLab']}
-            target="_blank"
-          >
-            <span className="sr-only">GitLab</span>
-            <img src={GitlabIcon.src} alt="" className="h-6 w-6" />
-          </a>
+          {SOCIAL_MEDIA.map((social) => (
+            <a
+              key={social.name}
+              className="text-black/40 dark:text-white/40 hover:text-primary transition-colors"
+              href={social.url}
+              target="_blank"
+            >
+              <span className="sr-only">{social.name}</span>
+              <img src={social.icon} alt="" className="h-6 w-6" />
+            </a>
+          ))}
         </div>
         <div className="mt-12 text-black/30 dark:text-white/30 text-sm">
           © {new Date().getFullYear()} - Vladimir Vaca - Full Stack Engineer.
