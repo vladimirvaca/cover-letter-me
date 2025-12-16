@@ -61,9 +61,6 @@ const Header: React.FC = () => {
                     {isDark ? 'light_mode' : 'dark_mode'}
                   </span>
                 </button>
-                <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary hover:bg-primary/90 transition-all text-white text-sm font-bold leading-normal tracking-[0.015em]">
-                  <span className="truncate">Hire Me</span>
-                </button>
               </div>
             </div>
 
@@ -91,37 +88,16 @@ const Header: React.FC = () => {
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-background-light dark:bg-background-dark border-b border-black/5 dark:border-white/5 p-4 flex flex-col gap-4 shadow-xl animate-in slide-in-from-top-2">
-          <a
-            className="text-black/70 dark:text-white/70 hover:text-primary font-medium"
-            href="#about"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            About
-          </a>
-          <a
-            className="text-black/70 dark:text-white/70 hover:text-primary font-medium"
-            href="#stack"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Stack
-          </a>
-          <a
-            className="text-black/70 dark:text-white/70 hover:text-primary font-medium"
-            href="#work"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Work
-          </a>
-          <a
-            className="text-black/70 dark:text-white/70 hover:text-primary font-medium"
-            href="#experience"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Experience
-          </a>
-          <button className="w-full h-10 bg-primary text-white rounded-full font-bold">
-            Hire Me
-          </button>
+          {SECTIONS.map((section) => (
+            <a
+              key={section.id}
+              className="text-black/70 dark:text-white/70 hover:text-primary font-medium"
+              href={`${section.href}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {section.name}
+            </a>
+          ))}
         </div>
       )}
     </header>
