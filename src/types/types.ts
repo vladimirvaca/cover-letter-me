@@ -1,3 +1,9 @@
+export interface Section {
+  id: string;
+  name: string;
+  href: string;
+}
+
 export interface Project {
   id: string;
   title: string;

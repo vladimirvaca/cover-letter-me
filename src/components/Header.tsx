@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SECTIONS } from '../constants/Constants.ts';
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -39,30 +40,15 @@ const Header: React.FC = () => {
 
             <div className="hidden md:flex flex-1 justify-end gap-8 items-center">
               <div className="flex items-center gap-6">
-                <a
-                  className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
-                  href="#about"
-                >
-                  About
-                </a>
-                <a
-                  className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
-                  href="#stack"
-                >
-                  Stack
-                </a>
-                <a
-                  className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
-                  href="#experience"
-                >
-                  Experience
-                </a>
-                <a
-                  className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
-                  href="#projects"
-                >
-                  Projects
-                </a>
+                {SECTIONS.map((section) => (
+                  <a
+                    key={section.id}
+                    className="text-black/70 dark:text-white/70 hover:text-primary transition-colors text-sm font-medium leading-normal"
+                    href={`${section.href}`}
+                  >
+                    {section.name}
+                  </a>
+                ))}
               </div>
 
               <div className="flex items-center gap-4">

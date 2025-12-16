@@ -1,4 +1,4 @@
-import type { Company, Project, TechCategory } from '../types/types.ts';
+import type { Company, Project, Section, TechCategory } from '../types/types.ts';
 import ioetLogo from '../assets/icons/ioet.png';
 import ibmLogo from '../assets/icons/ibm.png';
 import thoughtworksLogo from '../assets/icons/thoughtworks.png';
@@ -6,6 +6,13 @@ import encoraLogo from '../assets/icons/encora.webp';
 import githubIcon from '../assets/icons/github.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
 import gitlabIcon from '../assets/icons/gitlab.svg';
+
+export const SECTIONS: Section[] = [
+  { id: '1', name: 'About', href: '#about' },
+  { id: '2', name: 'Stack', href: '#stack' },
+  { id: '3', name: 'Experience', href: '#experience' },
+  { id: '4', name: 'Projects', href: '#projects' },
+];
 
 export const TECH_STACK: TechCategory[] = [
   {
