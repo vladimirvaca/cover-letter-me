@@ -17,7 +17,7 @@ const Experience: React.FC = () => {
               >
                 <div className={`${company.size} flex items-center justify-center`}>
                   <img
-                    src={`/src/assets/icons/${company.icon}`}
+                    src={company.icon}
                     alt={`${company.name} logo`}
                     className="max-w-full max-h-full object-contain"
                   />

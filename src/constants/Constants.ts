@@ -1,4 +1,8 @@
 import type { Company, Project, TechCategory } from '../types/types.ts';
+import ioetLogo from '../assets/icons/ioet.png';
+import ibmLogo from '../assets/icons/ibm.png';
+import thoughtworksLogo from '../assets/icons/thoughtworks.png';
+import encoraLogo from '../assets/icons/encora.webp';
 
 export const TECH_STACK: TechCategory[] = [
   {
@@ -37,10 +41,10 @@ export const TECH_STACK: TechCategory[] = [
 ];
 
 export const COMPANIES: Company[] = [
-  { name: 'ioet', icon: 'ioet.png', size: 'w-30 h-30' },
-  { name: 'IBM', icon: 'ibm.png', size: 'w-20 h-20' },
-  { name: 'Thoughtworks', icon: 'thoughtworks.png', size: 'w-35 h-35' },
-  { name: 'Encora', icon: 'encora.webp', size: 'w-20 h-20' },
+  { name: 'ioet', icon: ioetLogo.src, size: 'w-30 h-30' },
+  { name: 'IBM', icon: ibmLogo.src, size: 'w-20 h-20' },
+  { name: 'Thoughtworks', icon: thoughtworksLogo.src, size: 'w-35 h-35' },
+  { name: 'Encora', icon: encoraLogo.src, size: 'w-20 h-20' },
 ];
 
 export const PROJECTS: Project[] = [
