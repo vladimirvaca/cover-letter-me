@@ -5,7 +5,6 @@ import thoughtworksLogo from '../assets/icons/thoughtworks.png';
 import encoraLogo from '../assets/icons/encora.webp';
 import githubIcon from '../assets/icons/github.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
-import gitlabIcon from '../assets/icons/gitlab.svg';
 
 export const SECTIONS: Section[] = [
   { id: '1', name: 'About', href: '#about' },
@@ -86,6 +85,5 @@ export const SOCIAL_MEDIA = [
     url: 'https://www.linkedin.com/in/vladimir-vaca-5a08aba7/',
     icon: linkedinIcon.src,
   },
-  { name: 'GitHub', url: 'https://github.com/vladimirvaca', icon: githubIcon.src },
-  { name: 'GitLab', url: 'https://gitlab.com/vladimirvaca', icon: gitlabIcon.src },
+  { name: 'GitHub', url: 'https://github.com/vladimirvaca', icon: githubIcon.src }
 ];
