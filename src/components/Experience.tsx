@@ -3,7 +3,7 @@ import { COMPANIES } from '../constants/Constants.ts';
 
 const Experience: React.FC = () => {
   return (
-    <section className="w-full flex justify-center py-12 md:py-10 px-4 md:px-10" id="experience">
+    <section className="w-full flex justify-center py-12 md:py-36 px-4 md:px-10" id="experience">
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div className="flex flex-col items-center gap-8 mb-10 text-center">
           <p className="text-sm font-bold text-primary uppercase tracking-widest">
