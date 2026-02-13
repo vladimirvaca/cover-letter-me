@@ -24,18 +24,30 @@ const Header: React.FC = () => {
     }
   };
 
+  // Scroll to top handler
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-background-light/80 dark:bg-background-dark/80 border-b border-black/5 dark:border-white/5 transition-colors duration-300">
       <div className="layout-container flex h-full grow flex-col">
         <div className="px-4 md:px-10 flex justify-center py-3">
           <div className="layout-content-container flex w-full max-w-[1200px] items-center justify-between">
             <div className="flex items-center gap-4 text-white">
-              <div className="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-full">
-                <span className="material-symbols-outlined text-xl">terminal</span>
-              </div>
-              <h2 className="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
-                Vladimir Vaca
-              </h2>
+              <button
+                type="button"
+                onClick={handleScrollToTop}
+                className="flex items-center gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full"
+                aria-label="Scroll to top"
+              >
+                <div className="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-full">
+                  <span className="material-symbols-outlined text-xl">terminal</span>
+                </div>
+                <h2 className="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                  Vladimir Vaca
+                </h2>
+              </button>
             </div>
 
             <div className="hidden md:flex flex-1 justify-end gap-8 items-center">

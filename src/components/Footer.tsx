@@ -28,11 +28,11 @@ const Footer: React.FC = () => {
               target="_blank"
             >
               <span className="sr-only">{social.name}</span>
-              <img src={social.icon} alt="" className="h-6 w-6" />
+              <img src={social.icon} alt="" className="h-6 w-6 dark:invert dark:opacity-60" />
             </a>
           ))}
         </div>
-        <div className="mt-12 text-black/30 dark:text-white/30 text-sm">
+        <div className="mt-12 text-black/40 dark:text-white/40 text-sm">
           © {new Date().getFullYear()} - Vladimir Vaca - Full Stack Engineer.
         </div>
       </div>
