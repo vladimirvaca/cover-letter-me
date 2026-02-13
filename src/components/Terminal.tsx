@@ -15,10 +15,7 @@ const BestPracticeLine: React.FC<{ text: string; isLast?: boolean }> = ({ text, 
   </>
 );
 
-const languages = [
-  'English',
-  'Spanish',
-];
+const languages = ['English', 'Spanish'];
 
 const bestPractices = [
   'Clean code',
@@ -59,23 +56,29 @@ const Terminal: React.FC = () => {
             <BestPracticeLine key={exp} text={exp} isLast={idx === experience.length - 1} />
           ))}
           <Indent />
-          ],<br />
+          ],
+          <br />
           <Indent />
           <span className="text-blue-300">bestPractices</span>: [<br />
           {bestPractices.map((bp, idx) => (
             <BestPracticeLine key={bp} text={bp} isLast={idx === bestPractices.length - 1} />
           ))}
           <Indent />
-          ],<br />
+          ],
+          <br />
           <Indent />
-          <span className="text-blue-300">work</span>: [<span className="text-green-400">'remote'</span>, <span className="text-green-400">'full-time'</span>],<br />
+          <span className="text-blue-300">work</span>: [
+          <span className="text-green-400">'remote'</span>,{' '}
+          <span className="text-green-400">'full-time'</span>],
+          <br />
           <Indent />
           <span className="text-blue-300">languages</span>: [<br />
           {languages.map((lang, idx) => (
             <BestPracticeLine key={lang} text={lang} isLast={idx === languages.length - 1} />
           ))}
           <Indent />
-          ],<br />
+          ],
+          <br />
           &#125;;
           <br />
           <br />
@@ -85,6 +88,7 @@ const Terminal: React.FC = () => {
           <span className="text-purple-400">console</span>.
           <span className="text-blue-400">log</span>(
           <span className="text-green-400">'Engineering in action: Building, testing 🛠️'</span>);
+          <br />
           <br />
           <span className="text-yellow-300">engineer</span>.
           <span className="text-blue-400">deploy</span>();

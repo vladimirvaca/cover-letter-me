@@ -5,7 +5,7 @@ import profileImage from '../assets/img/profile.jpeg';
 const Developer: React.FC = () => {
   return (
     <>
-      <section className="w-full flex justify-center py-12 md:py-24 px-4 md:px-10" id="about">
+      <section className="w-full flex justify-center py-3 md:py-6 px-4 md:px-10" id="about">
         <div className="layout-content-container flex flex-col max-w-240 flex-1">
           <div className="@container">
             <div className="flex flex-col gap-12 items-center text-center">
