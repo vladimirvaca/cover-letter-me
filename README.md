@@ -1,28 +1,50 @@
-# Astro Starter Kit: Basics
+# Cover Letter Me: Personal Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+A modern, responsive portfolio and cover letter site for Vladimir Vaca, built with [Astro](https://astro.build/), [React](https://react.dev/), and [Tailwind CSS](https://tailwindcss.com/).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Project Overview
+This site showcases professional experience, tech stack, and projects in a clean, modular design. It is data-driven and easy to customize for your own use.
 
-## 🚀 Project Structure
+## 📁 Project Structure
+- `src/pages/index.astro` — Main entry page, composes the site from modular React components.
+- `src/components/` — UI sections: Header, Developer, TechStack, Experience, Projects, Footer, Terminal.
+- `src/constants/Constants.ts` — Centralized data for sections, tech stack, companies, projects, and social links.
+- `src/layouts/Layout.astro` — HTML layout, global styles, and theme logic (light/dark mode).
+- `src/assets/` — Images and icons for branding and content.
+- `src/styles/global.css` — Tailwind and custom CSS variables.
+- `public/` — Static files (e.g., favicon).
 
-Inside of your Astro project, you'll see the following folders and files:
+## ⚙️ How It Works
+- Modular React components rendered via Astro for performance and flexibility.
+- Data-driven: Tech stack, experience, and projects are defined in constants and mapped into UI.
+- Responsive and theme-aware (light/dark mode toggle).
+- Easily extensible for new sections or content.
 
-## 🧞 Commands
+## 🛠️ Setup & Usage
+1. Install dependencies:
+   ```sh
+   npm install
+   ```
+2. Start the development server:
+   ```sh
+   npm run dev
+   ```
+3. Build for production:
+   ```sh
+   npm run build
+   ```
+4. Preview the production build:
+   ```sh
+   npm run preview
+   ```
 
-All commands are run from the root of the project, from a terminal:
+## ✏️ Customization
+- Update `src/constants/Constants.ts` to change content (tech stack, companies, projects, social links).
+- Add images/icons to `src/assets/` as needed.
+- Adjust styles in `src/styles/global.css` or via Tailwind classes.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Feel free to fork and adapt for your own portfolio!
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+> **Developed with ❤️ by vladimirvaca 👽**
