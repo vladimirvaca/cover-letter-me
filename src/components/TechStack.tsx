@@ -3,7 +3,7 @@ import { TECH_STACK } from '../constants/Constants.ts';
 
 const TechStack: React.FC = () => {
   return (
-    <section className="w-full flex justify-center py-24 px-4 md:px-10 w-full" id="stack">
+    <section className="w-full flex justify-center py-6 md:py-24 px-4 md:px-10 w-full" id="stack">
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div className="flex items-center gap-3 mb-8">
           <span className="material-symbols-outlined text-primary text-3xl">layers</span>
