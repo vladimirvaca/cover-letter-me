@@ -1,15 +1,17 @@
 import type { Config, Context } from "@netlify/functions";
+import { Resend } from 'resend';
 
-export default async (req: Request, context: Context) => {
-  // 1. Only allow POST requests
+const resend = new Resend(process.env.RESEND_API_KEY);
+const toEmail = process.env.TO_EMAIL;
+
+export default async (req: Request, _context: Context) => {
   if (req.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });
   }
 
   try {
-    const { name, message, captchaToken } = await req.json();
+    const { name, email, message, captchaToken } = await req.json();
 
-    // 2. Validate with Google reCAPTCHA
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`;
 
@@ -23,14 +25,33 @@ export default async (req: Request, context: Context) => {
       });
     }
 
-    //Send an email
-    console.log("New message from:", name, message);
+    if (!toEmail) {
+      console.error('TO_EMAIL environment variable is not set.');
+      return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
+    }
+
+    // Send email to site owner
+    await resend.emails.send({
+      from: 'hola@rwcoder.com',
+      to: toEmail,
+      subject: `New message from ${name}`,
+      html: `<p>You have a new message from ${name} (${email}):</p><p>${message}</p>`,
+    });
+
+    // Send confirmation email to user
+    await resend.emails.send({
+      from: 'hola@rwcoder.com',
+      to: email,
+      subject: 'Thank you for your message!',
+      html: `<p>Hi ${name},</p><p>Thanks for reaching out. I have received your message and will get back to you as soon as possible.</p><p>Best regards,<br>Vladimir Vaca</p>`,
+    });
 
     return new Response(JSON.stringify({ message: "Thanks for writing!" }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
-  } catch (_error) {
+  } catch (error) {
+    console.error('Error processing request:', error);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
       status: 500,
     });
