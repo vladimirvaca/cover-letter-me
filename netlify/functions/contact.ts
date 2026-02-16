@@ -43,10 +43,10 @@ export default async (req: Request, _context: Context) => {
       from: 'Hi from Vladimir <hi@rwcoder.com>',
       to: email,
       subject: 'Thank you for your message!',
-      html: `<p>Hi ${name},</p><p>Thanks for reaching out. I have received your message and will get back to you as soon as possible.</p><p>Best regards,<br>Vladimir Vaca</p>`,
+      html: `<p>Hi ${name},</p><p>Thank you for getting in touch! I've received your message and I'm excited to connect with you. I'll review your message and get back to you as soon as I can.</p><p>In the meantime, feel free to connect with me on my social networks.</p><p>Best regards,<br>Vladimir Vaca</p>`,
     });
 
-    return new Response(JSON.stringify({ message: "Thanks for writing!" }), {
+    return new Response(JSON.stringify({ message: "Thank you for your message! I've received it and will get back to you shortly." }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
