@@ -5,9 +5,10 @@ import { GoogleReCaptcha, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 interface ContactFormProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  onSuccess: (message: string) => void;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose, onSuccess }) => {
   useEffect(() => {
     Modal.setAppElement('#root');
   }, []);
@@ -17,7 +18,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose }) => 
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formMessage, setFormMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +27,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose }) => 
     }
 
     setIsSubmitting(true);
-    setFormMessage('');
 
     const captchaToken = await executeRecaptcha('contactForm');
 
@@ -43,15 +42,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose }) => 
       const data = await response.json();
 
       if (response.ok) {
-        setFormMessage(data.message);
+        onSuccess(data.message || 'Message sent successfully!');
         setName('');
         setEmail('');
         setMessage('');
+        onRequestClose();
       } else {
-        setFormMessage(data.error || 'An error occurred.');
+        console.error(data.error || 'An error occurred.');
       }
     } catch (error) {
-      setFormMessage('An error occurred.');
+      console.error('An error occurred.');
     } finally {
       setIsSubmitting(false);
     }
@@ -122,7 +122,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose }) => 
             {isSubmitting ? 'Sending...' : 'Send'}
           </button>
         </div>
-        {formMessage && <p className="mt-4 text-center">{formMessage}</p>}
       </form>
       <GoogleReCaptcha onVerify={() => {}} />
     </Modal>
@@ -130,4 +129,3 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose }) => 
 };
 
 export default ContactForm;
-

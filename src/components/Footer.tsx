@@ -6,10 +6,18 @@ import ContactForm from './ContactForm.tsx';
 const FooterContent: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     setHasMounted(true);
   }, []);
+
+  const handleSuccess = (message: string) => {
+    setSuccessMessage(message);
+    setTimeout(() => {
+      setSuccessMessage('');
+    }, 5000);
+  };
 
   return (
     <>
@@ -29,6 +37,9 @@ const FooterContent: React.FC = () => {
             <span className="material-symbols-outlined">mail</span>
             Say Hello
           </button>
+          {successMessage && (
+            <p className="mt-4 text-center text-green-500">{successMessage}</p>
+          )}
           <div className="flex gap-8 mt-12">
             {SOCIAL_MEDIA.map((social) => (
               <a
@@ -48,7 +59,13 @@ const FooterContent: React.FC = () => {
           </div>
         </div>
       </footer>
-      {hasMounted && <ContactForm isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} />}
+      {hasMounted && (
+        <ContactForm
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onSuccess={handleSuccess}
+        />
+      )}
     </>
   );
 };
