@@ -35,6 +35,8 @@ import '../styles/global.css';
   <body
     class="bg-background-light dark:bg-background-dark text-surface-dark dark:text-white font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white"
   >
-    <slot />
+    <div id="root">
+      <slot />
+    </div>
   </body>
 </html>
