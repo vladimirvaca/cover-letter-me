@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
               target="_blank"
             >
               <span className="sr-only">{social.name}</span>
-              <img src={social.icon} alt="" className="h-6 w-6 dark:invert dark:opacity-60" />
+              <img src={social.icon} alt="" className="h-8 w-8 dark:invert dark:opacity-60" />
             </a>
           ))}
         </div>
