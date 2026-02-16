@@ -1,11 +1,9 @@
 import React from 'react';
 
-// Indent component for code-like indentation
 const Indent: React.FC<{ level?: number }> = ({ level = 1 }) => (
   <span style={{ display: 'inline-block', width: `${level * 2}ch` }} aria-hidden="true" />
 );
 
-// BestPracticeLine component for each best practice
 const BestPracticeLine: React.FC<{ text: string; isLast?: boolean }> = ({ text, isLast }) => (
   <>
     <Indent level={2} />
@@ -15,7 +13,7 @@ const BestPracticeLine: React.FC<{ text: string; isLast?: boolean }> = ({ text, 
   </>
 );
 
-const languages = ['English', 'Spanish'];
+const languages = ['English - C1 Level', 'Spanish - Native'];
 
 const bestPractices = [
   'Clean code',

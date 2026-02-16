@@ -24,9 +24,10 @@ const Developer: React.FC = () => {
                   Transforming Ideas into <span className="text-primary">Impactful Software.</span>
                 </h1>
                 <p className="text-black/60 dark:text-white/60 text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
-                  Full-stack developer with 10+ years of experience building software from the
-                  ground up and enhancing existing systems. Passionate about continuous learning and
-                  staying at the forefront of modern technologies.
+                  Accomplished full-stack developer skilled in building robust, scalable solutions
+                  from the ground up and optimizing legacy systems. Driven by curiosity and a
+                  passion for innovation, I continuously embrace new technologies to deliver the
+                  best results.
                 </p>
               </div>
               <div className="flex flex-wrap gap-4 justify-center w-full">
