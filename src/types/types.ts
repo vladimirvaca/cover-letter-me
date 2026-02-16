@@ -15,7 +15,7 @@ export interface Project {
 
 export interface Skill {
   name: string;
-  icon: string;
+  deviconClass?: string;
 }
 
 export interface TechCategory {

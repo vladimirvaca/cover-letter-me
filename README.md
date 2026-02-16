@@ -14,6 +14,17 @@ This site showcases professional experience, tech stack, and projects in a clean
 - `src/styles/global.css` — Tailwind and custom CSS variables.
 - `public/` — Static files (e.g., favicon).
 
+### 🖼️ Icon System
+- Devicon icons are included globally via CDN in `src/layouts/Layout.astro`:
+  ```html
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  ```
+- To use a Devicon icon, reference its class in the constants or component, e.g.:
+  ```html
+  <i class="devicon-vitest-plain colored"></i>
+  ```
+- The TechStack section supports both Material Symbols and Devicon icons. To add a Devicon, set the `deviconClass` property in the skill object in `src/constants/Constants.ts`.
+
 ## ⚙️ How It Works
 - Modular React components rendered via Astro for performance and flexibility.
 - Data-driven: Tech stack, experience, and projects are defined in constants and mapped into UI.
