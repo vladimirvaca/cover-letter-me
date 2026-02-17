@@ -74,6 +74,15 @@ All of these services offer free tiers with usage limits that are more than enou
    npm run preview
    ```
 
+## 🖨️ PDF Viewer Modal
+
+The **PdfViewerModal** React component displays a PDF (like a CV) in a modal window, letting users view documents directly on the site. It uses [react-modal](https://github.com/reactjs/react-modal) for accessibility and an `<iframe>` for fast PDF rendering. Control its visibility and content with the `isOpen`, `onRequestClose`, and `pdfUrl` props. Place your PDF in the `public/` folder and pass its path to `pdfUrl`.
+
+Example:
+```tsx
+<PdfViewerModal isOpen={isModalOpen} onRequestClose={closeModal} pdfUrl="/vladimir_vaca_cv.pdf" />
+```
+
 ## ✏️ Customization
 - Update `src/constants/Constants.ts` to change content (tech stack, companies, projects, social links).
 - Add images/icons to `src/assets/` as needed.
@@ -84,5 +93,3 @@ Feel free to fork and adapt for your own portfolio!
 ---
 
 > **Developed with ❤️ by vladimirvaca 👽**
-
-

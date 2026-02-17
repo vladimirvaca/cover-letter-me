@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Terminal from './Terminal';
+import PdfViewerModal from './PdfViewerModal';
 import profileImage from '../assets/img/profile.jpeg';
 
 const Developer: React.FC = () => {
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
+
+  const openPdfModal = () => setIsPdfModalOpen(true);
+  const closePdfModal = () => setIsPdfModalOpen(false);
+
   return (
     <>
       <section className="w-full flex justify-center py-6 md:py-24 px-4 md:px-10" id="about">
@@ -38,15 +44,14 @@ const Developer: React.FC = () => {
                   <span>View Projects</span>
                   <span className="material-symbols-outlined text-lg">arrow_downward</span>
                 </a>
-                <a
+                <button
                   className="flex min-w-35 cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-8 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20 text-black dark:text-white text-base font-bold transition-all border border-black/10 dark:border-white/10 shadow-sm"
-                  href="/cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={openPdfModal}
+                  type="button"
                 >
                   <span className="material-symbols-outlined text-lg">visibility</span>
                   <span>View CV</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -54,6 +59,12 @@ const Developer: React.FC = () => {
       </section>
 
       <Terminal />
+
+      <PdfViewerModal
+        isOpen={isPdfModalOpen}
+        onRequestClose={closePdfModal}
+        pdfUrl="/vladimir_vaca_cv.pdf"
+      />
     </>
   );
 };
