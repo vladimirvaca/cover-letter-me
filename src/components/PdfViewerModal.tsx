@@ -30,19 +30,19 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="CV PDF Viewer"
-      className="bg-background-light dark:bg-background-dark rounded-lg shadow-xl max-w-5xl w-full mx-auto my-2 sm:my-4 md:my-8 h-[95vh] sm:h-[90vh] md:h-auto md:max-h-[90vh] flex flex-col overflow-hidden outline-none"
+      className="bg-background-light dark:bg-background-dark rounded-lg shadow-xl max-w-5xl w-full mx-auto my-2 sm:my-4 md:my-8 h-[95vh] flex flex-col overflow-hidden outline-none"
       overlayClassName="fixed inset-0 bg-black/70 flex items-center justify-center p-1 sm:p-2 md:p-4 z-50"
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-3 md:p-4 border-b border-black/10 dark:border-white/10 shrink-0">
-        <h2 className="text-lg md:text-xl font-bold text-black dark:text-white">Vladimir Vaca - Senior Full Stack Developer</h2>
+      <div className="flex items-center justify-between py-1 md:py-1.5 px-2 md:px-3 border-b border-black/10 dark:border-white/10 shrink-0">
+        <h2 className="text-base md:text-lg font-bold text-black dark:text-white">Vladimir Vaca - Senior Full Stack Developer</h2>
         <div className="flex items-center gap-2">
           <button
             onClick={onRequestClose}
-            className="p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
             aria-label="Close modal"
           >
-            <span className="material-symbols-outlined text-black dark:text-white text-xl md:text-2xl">
+            <span className="material-symbols-outlined text-black dark:text-white text-lg md:text-xl">
               close
             </span>
           </button>
@@ -62,4 +62,3 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
 };
 
 export default PdfViewerModal;
-
