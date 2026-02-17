@@ -55,13 +55,13 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
         </div>
       </div>
 
-      {/* PDF Viewer using embed tag */}
+      {/* PDF Viewer using iframe */}
       <div className="flex-1 overflow-hidden bg-gray-100 dark:bg-surface-darker min-h-0">
-        <embed
-          src={`${pdfUrl}#toolbar=1&navpanes=0&scrollbar=1`}
-          type="application/pdf"
-          className="w-full h-full"
+        <iframe
+          src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}${pdfUrl}`}
+          className="w-full h-full border-none"
           title="CV PDF Viewer"
+          allowFullScreen
         />
       </div>
     </Modal>
