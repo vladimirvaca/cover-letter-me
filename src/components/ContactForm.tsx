@@ -61,11 +61,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose, onSuc
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="Drop me a line! Please, double check your mail."
+      contentLabel="Contact Me"
       className="bg-background-light dark:bg-background-dark p-8 rounded-lg shadow-xl max-w-lg w-full m-auto"
       overlayClassName="fixed inset-0 bg-black/50 flex items-center justify-center p-4"
     >
-      <h2 className="text-3xl font-bold mb-4 text-black dark:text-white">Contact Me</h2>
+      <h2 className="text-2xl font-bold mb-2 text-black dark:text-white">Ready when you are.</h2>
+      <p className="text-sm text-black/60 dark:text-white/60 mb-4">
+        Please double-check your email to ensure a reply.
+      </p>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-black/80 dark:text-white/80 mb-2">
