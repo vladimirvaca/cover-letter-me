@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import Modal from 'react-modal';
 
 interface PdfViewerModalProps {
@@ -8,9 +8,42 @@ interface PdfViewerModalProps {
 }
 
 const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose, pdfUrl }) => {
+  const [pdfDataUrl, setPdfDataUrl] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     Modal.setAppElement('#root');
   }, []);
+
+  // Fetch PDF and convert to data URL for better mobile compatibility
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const loadPdf = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(pdfUrl);
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setPdfDataUrl(url);
+      } catch (error) {
+        console.error('Failed to load PDF:', error);
+        // Fallback to direct URL if blob fails
+        setPdfDataUrl(pdfUrl);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPdf();
+
+    // Cleanup object URL when modal closes
+    return () => {
+      if (pdfDataUrl && pdfDataUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(pdfDataUrl);
+      }
+    };
+  }, [isOpen, pdfUrl]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -50,12 +83,21 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
       </div>
 
       {/* PDF Viewer using iframe */}
-      <div className="flex-1 overflow-hidden bg-gray-100 dark:bg-surface-darker min-h-0">
-        <iframe
-          src={`${pdfUrl}#toolbar=1&navpanes=0&scrollbar=1`}
-          className="w-full h-full"
-          title="CV PDF Viewer"
-        />
+      <div className="flex-1 overflow-hidden bg-gray-100 dark:bg-surface-darker min-h-0 flex items-center justify-center">
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center gap-3">
+            <span className="material-symbols-outlined text-4xl text-black/50 dark:text-white/50 animate-spin">
+              hourglass_empty
+            </span>
+            <p className="text-black/60 dark:text-white/60">Loading PDF...</p>
+          </div>
+        ) : (
+          <iframe
+            src={pdfDataUrl ? `${pdfDataUrl}#toolbar=1&navpanes=0&scrollbar=1` : ''}
+            className="w-full h-full"
+            title="CV PDF Viewer"
+          />
+        )}
       </div>
     </Modal>
   );
