@@ -40,6 +40,7 @@ const FooterContent: React.FC = () => {
           {successMessage && (
             <p className="mt-8 text-center text-lg text-green-500">
               Thank you for reaching out! I've received your message and will get back to you soon.
+              Check your spam, just in case!
             </p>
           )}
           <div className="flex gap-8 mt-12">

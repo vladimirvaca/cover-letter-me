@@ -32,7 +32,7 @@ export default async (req: Request, _context: Context) => {
 
     // Send email to site owner
     await resend.emails.send({
-      from: 'Portfolio Contact <hi@rwcoder.com>',
+      from: 'Portfolio Contact <hello@rwcoder.com>',
       to: toEmail,
       subject: `New message from ${name}`,
       html: `<p>You have a new message from ${name} (${email}):</p><p>${message}</p>`,
@@ -40,7 +40,7 @@ export default async (req: Request, _context: Context) => {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'Vladimir Vaca <hi@rwcoder.com>',
+      from: 'Vladimir Vaca <hello@rwcoder.com>',
       to: email,
       subject: 'Thank you for your message!',
       html: `<p>Hi ${name},</p><p>Thank you for getting in touch! I've received your message and I'm excited to connect with you. I'll review your message and get back to you soon.</p><p>In the meantime, feel free to connect with me on my social networks.</p><p>Best regards,<br>Vladimir Vaca</p>`,
