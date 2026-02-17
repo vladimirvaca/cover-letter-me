@@ -27,8 +27,8 @@ const FooterContent: React.FC = () => {
             Let's build something <span className="text-primary">amazing</span>.
           </h2>
           <p className="text-black/60 dark:text-white/60 max-w-xl mb-10 text-lg">
-            Open for new opportunities. Whether you have a question or just want to say hi,
-            I'll respond to your message as soon as possible!
+            Open for new opportunities. Whether you have a question or just want to say hi, I'll
+            respond to your message as soon as possible!
           </p>
           <button
             className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform hover:-translate-y-1 shadow-xl shadow-primary/25"
@@ -40,6 +40,7 @@ const FooterContent: React.FC = () => {
           {successMessage && (
             <p className="mt-8 text-center text-lg text-green-500">
               Thank you for reaching out! I've received your message and will get back to you soon.
+              <br />
               Check your spam, just in case!
             </p>
           )}
@@ -77,7 +78,7 @@ const Footer: React.FC = () => {
   const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
   if (!recaptchaSiteKey) {
-    console.error("reCAPTCHA site key is not set in environment variables.");
+    console.error('reCAPTCHA site key is not set in environment variables.');
     return <FooterContent />;
   }
 
