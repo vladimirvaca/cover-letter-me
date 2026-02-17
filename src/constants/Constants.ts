@@ -40,6 +40,7 @@ export const TECH_STACK: TechCategory[] = [
       { name: 'Postgres', deviconClass: 'devicon-postgresql-plain colored' },
       { name: 'Graphql', deviconClass: 'devicon-graphql-plain colored' },
       { name: 'JUnit', deviconClass: 'devicon-junit-plain colored' },
+      { name: 'Mocha', deviconClass: 'devicon-mocha-plain' },
     ],
   },
   {
