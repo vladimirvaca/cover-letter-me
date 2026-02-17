@@ -16,7 +16,7 @@ const FooterContent: React.FC = () => {
     setSuccessMessage(message);
     setTimeout(() => {
       setSuccessMessage('');
-    }, 5000);
+    }, 8000);
   };
 
   return (
@@ -38,7 +38,9 @@ const FooterContent: React.FC = () => {
             Say Hello
           </button>
           {successMessage && (
-            <p className="mt-4 text-center text-green-500">{successMessage}</p>
+            <p className="mt-8 text-center text-lg text-green-500">
+              Thank you for reaching out! I've received your message and will get back to you soon. Please check your inbox for a confirmation email.
+            </p>
           )}
           <div className="flex gap-8 mt-12">
             {SOCIAL_MEDIA.map((social) => (

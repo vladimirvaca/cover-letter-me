@@ -1,12 +1,12 @@
-import type { Config, Context } from "@netlify/functions";
+import type { Config, Context } from '@netlify/functions';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const toEmail = process.env.TO_EMAIL;
 
 export default async (req: Request, _context: Context) => {
-  if (req.method !== "POST") {
-    return new Response("Method Not Allowed", { status: 405 });
+  if (req.method !== 'POST') {
+    return new Response('Method Not Allowed', { status: 405 });
   }
 
   try {
@@ -15,19 +15,19 @@ export default async (req: Request, _context: Context) => {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`;
 
-    const recaptchaRes = await fetch(verifyUrl, { method: "POST" });
+    const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
     const recaptchaData = await recaptchaRes.json();
 
     if (!recaptchaData.success || recaptchaData.score < 0.5) {
-      return new Response(JSON.stringify({ error: "Bot detected" }), {
+      return new Response(JSON.stringify({ error: 'Bot detected' }), {
         status: 403,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
     if (!toEmail) {
       console.error('TO_EMAIL environment variable is not set.');
-      return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
+      return new Response(JSON.stringify({ error: 'Internal Server Error' }), { status: 500 });
     }
 
     // Send email to site owner
@@ -43,22 +43,26 @@ export default async (req: Request, _context: Context) => {
       from: 'Hi from Vladimir <hi@rwcoder.com>',
       to: email,
       subject: 'Thank you for your message!',
-      html: `<p>Hi ${name},</p><p>Thank you for getting in touch! I've received your message and I'm excited to connect with you. I'll review your message and get back to you as soon as I can.</p><p>In the meantime, feel free to connect with me on my social networks.</p><p>Best regards,<br>Vladimir Vaca</p>`,
+      html: `<p>Hi ${name},</p><p>Thank you for getting in touch! I've received your message and I'm excited to connect with you. I'll review your message and get back to you soon.</p><p>In the meantime, feel free to connect with me on my social networks.</p><p>Best regards,<br>Vladimir Vaca</p>`,
     });
 
-    return new Response(JSON.stringify({ message: "Thank you for your message! I've received it and will get back to you shortly." }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({
+        message: "Thank you for your message! I've received it and will get back to you shortly.",
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
   } catch (error) {
     console.error('Error processing request:', error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
       status: 500,
     });
   }
 };
 
 export const config: Config = {
-  path: "/api/contact",
+  path: '/api/contact',
 };
-
