@@ -36,7 +36,7 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="CV PDF Viewer"
-      className="bg-background-light dark:bg-background-dark rounded-lg shadow-xl max-w-5xl w-full mx-auto my-2 sm:my-4 md:my-8 h-[95vh] flex flex-col overflow-hidden outline-none"
+      className="bg-background-light dark:bg-background-dark rounded-lg shadow-xl max-w-5xl w-full mx-auto my-2 sm:my-4 md:my-8 h-[80vh] md:h-[95vh] flex flex-col overflow-hidden outline-none"
       overlayClassName="fixed inset-0 bg-black/70 flex items-center justify-center p-1 sm:p-2 md:p-4 z-50"
     >
       {/* Header */}
@@ -55,10 +55,10 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
         </div>
       </div>
 
-      {/* PDF Viewer using iframe */}
+      {/* PDF Viewer using native browser PDF viewer */}
       <div className="flex-1 overflow-hidden bg-gray-100 dark:bg-surface-darker min-h-0">
         <iframe
-          src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}${pdfUrl}`}
+          src={pdfUrl}
           className="w-full h-full border-none"
           title="CV PDF Viewer"
           allowFullScreen
