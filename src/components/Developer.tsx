@@ -63,7 +63,7 @@ const Developer: React.FC = () => {
       <PdfViewerModal
         isOpen={isPdfModalOpen}
         onRequestClose={closePdfModal}
-        pdfUrl="/vladimir_vaca_cv.pdf"
+        pdfUrl="/ramiro_vladimir_vaca_cv.pdf"
       />
     </>
   );
