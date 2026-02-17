@@ -61,7 +61,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose, onSuc
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="Drop me a line"
+      contentLabel="Contact Form"
       className="bg-background-light dark:bg-background-dark p-8 rounded-lg shadow-xl max-w-lg w-full m-auto"
       overlayClassName="fixed inset-0 bg-black/50 flex items-center justify-center p-4"
     >

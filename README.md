@@ -3,16 +3,17 @@
 A modern, responsive portfolio and cover letter site for Vladimir Vaca, built with [Astro](https://astro.build/), [React](https://react.dev/), and [Tailwind CSS](https://tailwindcss.com/).
 
 ## 🚀 Project Overview
-This site showcases professional experience, tech stack, and projects in a clean, modular design. It is data-driven and easy to customize for your own use.
+This site showcases professional experience, tech stack, and projects in a clean, modular design. It is data-driven and easy to customize for your own use. It also includes a functional contact form with email notifications and spam protection.
 
 ## 📁 Project Structure
 - `src/pages/index.astro` — Main entry page, composes the site from modular React components.
-- `src/components/` — UI sections: Header, Developer, TechStack, Experience, Projects, Footer, Terminal.
+- `src/components/` — UI sections: Header, Developer, TechStack, Experience, Projects, Footer, Terminal, and ContactForm.
 - `src/constants/Constants.ts` — Centralized data for sections, tech stack, companies, projects, and social links.
 - `src/layouts/Layout.astro` — HTML layout, global styles, and theme logic (light/dark mode).
 - `src/assets/` — Images and icons for branding and content.
 - `src/styles/global.css` — Tailwind and custom CSS variables.
 - `public/` — Static files (e.g., favicon).
+- `netlify/functions/contact.ts` — Serverless function to handle contact form submissions.
 
 ### 🖼️ Icon System
 - Devicon icons are included globally via CDN in `src/layouts/Layout.astro`:
@@ -29,22 +30,46 @@ This site showcases professional experience, tech stack, and projects in a clean
 - Modular React components rendered via Astro for performance and flexibility.
 - Data-driven: Tech stack, experience, and projects are defined in constants and mapped into UI.
 - Responsive and theme-aware (light/dark mode toggle).
-- Easily extensible for new sections or content.
+- **Contact Form**: The contact form is protected by Google reCAPTCHA v3 to prevent spam. It uses a Netlify serverless function to verify the reCAPTCHA token and then sends emails via [Resend](https://resend.com/). This ensures that form submissions are from legitimate users.
 
 ## 🛠️ Setup & Usage
-1. Install dependencies:
+
+### Prerequisites
+To use all the features of this project, especially the contact form, you will need accounts for the following services:
+- **Netlify**: For hosting the site and deploying the serverless function.
+- **Resend**: For sending and receiving emails from the contact form.
+- **Google reCAPTCHA**: To protect the contact form from spam.
+
+All of these services offer free tiers with usage limits that are more than enough for a personal portfolio.
+
+1. **Install dependencies:**
    ```sh
    npm install
    ```
-2. Start the development server:
+
+2. **Environment Variables:**
+   Create a `.env` file in the root of the project and add the following variables. You can get the keys from Resend and Google reCAPTCHA.
+   ```
+   # Resend API Key
+   RESEND_API_KEY="your_resend_api_key"
+   # Email to receive messages
+   TO_EMAIL="your_email@example.com"
+
+   # Google reCAPTCHA Keys
+   PUBLIC_RECAPTCHA_SITE_KEY="your_recaptcha_site_key"
+   RECAPTCHA_SECRET_KEY="your_recaptcha_secret_key"
+   ```
+   When deploying to Netlify, you must set these environment variables in the Netlify UI.
+
+3. **Start the development server:**
    ```sh
    npm run dev
    ```
-3. Build for production:
+4. **Build for production:**
    ```sh
    npm run build
    ```
-4. Preview the production build:
+5. **Preview the production build:**
    ```sh
    npm run preview
    ```
@@ -59,3 +84,5 @@ Feel free to fork and adapt for your own portfolio!
 ---
 
 > **Developed with ❤️ by vladimirvaca 👽**
+
+
