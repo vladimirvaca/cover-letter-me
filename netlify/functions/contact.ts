@@ -40,7 +40,7 @@ export default async (req: Request, _context: Context) => {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'Hi from Vladimir <hi@rwcoder.com>',
+      from: 'Vladimir Vaca <hi@rwcoder.com>',
       to: email,
       subject: 'Thank you for your message!',
       html: `<p>Hi ${name},</p><p>Thank you for getting in touch! I've received your message and I'm excited to connect with you. I'll review your message and get back to you soon.</p><p>In the meantime, feel free to connect with me on my social networks.</p><p>Best regards,<br>Vladimir Vaca</p>`,
