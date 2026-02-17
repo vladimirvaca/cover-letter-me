@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useLayoutEffect } from 'react';
 import Modal from 'react-modal';
 
 interface PdfViewerModalProps {
@@ -8,8 +8,12 @@ interface PdfViewerModalProps {
 }
 
 const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose, pdfUrl }) => {
-  useEffect(() => {
-    Modal.setAppElement('#root');
+  useLayoutEffect(() => {
+    // Set app element for modal accessibility
+    const rootElement = document.getElementById('root');
+    if (rootElement) {
+      Modal.setAppElement(rootElement);
+    }
   }, []);
 
   const handleKeyDown = useCallback(
@@ -21,9 +25,11 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
   );
 
   useEffect(() => {
+    if (!isOpen) return;
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
+  }, [isOpen, handleKeyDown]);
 
   return (
     <Modal
