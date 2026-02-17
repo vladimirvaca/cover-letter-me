@@ -17,3 +17,10 @@
   --radius-xl: 3rem;
   --radius-full: 9999px;
 }
+
+/* Hide PDF viewer toolbar in iframes */
+iframe[title="CV PDF Viewer"] {
+  /* Remove scrollbars and toolbar from PDF display */
+  display: block;
+}
+
