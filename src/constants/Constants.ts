@@ -2,7 +2,7 @@ import type { Company, Project, Section, TechCategory } from '../types/types.ts'
 import ioetLogo from '../assets/icons/ioet.png';
 import ibmLogo from '../assets/icons/ibm.png';
 import thoughtworksLogo from '../assets/icons/thoughtworks.png';
-import encoraLogo from '../assets/icons/encora.webp';
+import encoraLogo from '../assets/icons/encora.png';
 import githubIcon from '../assets/icons/github.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
 
@@ -10,7 +10,7 @@ export const SECTIONS: Section[] = [
   { id: '1', name: 'About', href: '#about' },
   { id: '2', name: 'Stack', href: '#stack' },
   { id: '3', name: 'Experience', href: '#experience' },
-  { id: '4', name: 'Projects', href: '#projects' },
+  //{ id: '4', name: 'Projects', href: '#projects' }, Let's comment for now
 ];
 
 export const TECH_STACK: TechCategory[] = [
@@ -58,10 +58,10 @@ export const TECH_STACK: TechCategory[] = [
 ];
 
 export const COMPANIES: Company[] = [
-  { name: 'ioet', icon: ioetLogo.src, size: 'w-30 h-30' },
-  { name: 'IBM', icon: ibmLogo.src, size: 'w-20 h-20' },
-  { name: 'Thoughtworks', icon: thoughtworksLogo.src, size: 'w-35 h-35' },
-  { name: 'Encora', icon: encoraLogo.src, size: 'w-20 h-20' },
+  { name: 'ioet', icon: ioetLogo.src, width: 64, height: 64 },
+  { name: 'IBM', icon: ibmLogo.src, width: 64, height: 64 },
+  { name: 'Thoughtworks', icon: thoughtworksLogo.src, width: 64, height: 64 },
+  { name: 'Encora', icon: encoraLogo.src, width: 64, height: 64 },
 ];
 
 export const PROJECTS: Project[] = [

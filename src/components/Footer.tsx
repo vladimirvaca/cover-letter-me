@@ -54,7 +54,7 @@ const FooterContent: React.FC = () => {
                 rel="noopener noreferrer"
               >
                 <span className="sr-only">{social.name}</span>
-                <img src={social.icon} alt="" className="h-8 w-8 dark:invert dark:opacity-60" />
+                <img src={social.icon} alt="" className="h-8 w-8 dark:invert" />
               </a>
             ))}
           </div>

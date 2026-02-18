@@ -37,7 +37,7 @@ const experience = [
 
 const Terminal: React.FC = () => {
   return (
-    <div className="w-full max-w-240 px-4 md:px-10 mt-8 mb-8 md:mb-20 block opacity-90 hover:opacity-100 transition-opacity">
+    <div className="w-full max-w-240 px-4 md:px-10 mt-8 mb-8 md:mb-20 block">
       <div className="rounded-xl bg-[#0e1210] border border-black/5 dark:border-white/10 p-5 shadow-2xl font-mono text-sm overflow-hidden ring-1 ring-black/5">
         <div className="flex gap-2 mb-4">
           <div className="size-3 rounded-full bg-red-500"></div>

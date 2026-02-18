@@ -16,7 +16,7 @@ const Developer: React.FC = () => {
           <div className="@container">
             <div className="flex flex-col gap-12 items-center text-center">
               <div className="relative group">
-                <div className="absolute -inset-1 rounded-full bg-linear-to-r from-primary to-cyan-400 opacity-25 blur transition duration-500 group-hover:opacity-75"></div>
+                <div className="absolute -inset-1 rounded-full bg-linear-to-r from-primary to-cyan-400 opacity-80 blur transition duration-500"></div>
                 <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden border-4 border-white dark:border-background-dark shadow-xl">
                   <img
                     alt="Portrait of a smiling male developer"
