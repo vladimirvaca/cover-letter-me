@@ -39,11 +39,15 @@ const Terminal: React.FC = () => {
   return (
     <div className="w-full max-w-240 px-4 md:px-10 mt-8 mb-8 md:mb-20 block">
       <div className="rounded-xl bg-[#0e1210] border border-black/5 dark:border-white/10 p-5 shadow-2xl font-mono text-sm overflow-hidden ring-1 ring-black/5">
-        <div className="flex gap-2 mb-4">
+        {/* Header with filename */}
+        <div className="flex items-center gap-2 mb-3 pl-2">
           <div className="size-3 rounded-full bg-red-500"></div>
           <div className="size-3 rounded-full bg-yellow-500"></div>
           <div className="size-3 rounded-full bg-green-500"></div>
+          <span className="text-sm text-gray-300 font-mono select-none pl-6" aria-label="Filename">engineer.ts</span>
         </div>
+        {/* Separator between header and content */}
+        <div className="border-t border-gray-700 dark:border-white/10 mb-4" aria-hidden="true"></div>
         <div className="text-gray-400">
           <span className="text-purple-400">const</span>{' '}
           <span className="text-yellow-300">engineer</span>{' '}
