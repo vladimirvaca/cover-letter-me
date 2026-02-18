@@ -21,14 +21,62 @@ export default async (req: Request, _context: Context) => {
   try {
     const { name, email, message, captchaToken } = await req.json();
 
+    // Validate required fields
+    if (!name || !email || !message || !captchaToken) {
+      return new Response(
+        JSON.stringify({ error: 'Missing required fields' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
+
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    if (!secretKey) {
+      console.error('RECAPTCHA_SECRET_KEY environment variable is not set.');
+      return new Response(JSON.stringify({ error: 'Internal Server Error' }), { status: 500 });
+    }
+
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`;
 
-    const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
-    const recaptchaData = await recaptchaRes.json();
+    let recaptchaRes: Response;
+    let recaptchaData: any;
 
-    if (!recaptchaData.success || recaptchaData.score < 0.5) {
-      return new Response(JSON.stringify({ error: 'Bot detected' }), {
+    try {
+      recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
+      recaptchaData = await recaptchaRes.json();
+    } catch (fetchError) {
+      console.error('Error verifying reCAPTCHA:', fetchError);
+      return new Response(
+        JSON.stringify({ error: 'reCAPTCHA verification failed' }),
+        {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
+
+    // Log reCAPTCHA response for debugging
+    console.log('reCAPTCHA response:', {
+      success: recaptchaData.success,
+      score: recaptchaData.score,
+      action: recaptchaData.action,
+      challenge_ts: recaptchaData.challenge_ts,
+    });
+
+    if (!recaptchaData.success) {
+      console.warn('reCAPTCHA verification failed:', recaptchaData);
+      return new Response(JSON.stringify({ error: 'reCAPTCHA verification failed' }), {
+        status: 403,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Lower threshold to 0.3 for better user experience
+    if (recaptchaData.score < 0.3) {
+      console.warn(`reCAPTCHA score too low: ${recaptchaData.score}`);
+      return new Response(JSON.stringify({ error: 'Failed spam detection' }), {
         status: 403,
         headers: { 'Content-Type': 'application/json' },
       });
@@ -68,6 +116,7 @@ export default async (req: Request, _context: Context) => {
     console.error('Error processing request:', error);
     return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
       status: 500,
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 };

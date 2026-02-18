@@ -18,11 +18,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose, onSuc
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+
     if (!executeRecaptcha) {
       console.log('Execute recaptcha not yet available');
+      setError('reCAPTCHA is not ready. Please try again.');
       return;
     }
 
@@ -46,12 +50,24 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose, onSuc
         setName('');
         setEmail('');
         setMessage('');
+        setError(null);
         onRequestClose();
       } else {
-        console.error(data.error || 'An error occurred.');
+        // Handle different error types
+        if (response.status === 403) {
+          setError('Spam detection triggered. Please try again in a moment.');
+          console.error('403 Error:', data.error);
+        } else if (response.status === 400) {
+          setError('Please fill in all fields correctly.');
+          console.error('400 Error:', data.error);
+        } else {
+          setError(data.error || 'An error occurred. Please try again.');
+          console.error('Error:', data.error);
+        }
       }
     } catch (error) {
-      console.error('An error occurred.');
+      setError('Network error. Please check your connection and try again.');
+      console.error('Network error:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -69,6 +85,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onRequestClose, onSuc
       <p className="text-sm text-black/60 dark:text-white/60 mb-4">
         Please double-check your email to ensure a reply.
       </p>
+      {error && (
+        <div className="mb-4 p-3 rounded bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 text-red-800 dark:text-red-200 text-sm">
+          {error}
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-black/80 dark:text-white/80 mb-2">
