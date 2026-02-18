@@ -4,6 +4,15 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 const toEmail = process.env.TO_EMAIL;
 
+// Utility to encode email subject for non-ASCII (emoji) support
+function encodeSubject(subject: string): string {
+  // If all ASCII, return as is
+  if (/^[\x00-\x7F]*$/.test(subject)) return subject;
+  // Otherwise, encode as MIME encoded-word (RFC 2047)
+  const base64 = Buffer.from(subject, 'utf-8').toString('base64');
+  return `=?UTF-8?B?${base64}?=`;
+}
+
 export default async (req: Request, _context: Context) => {
   if (req.method !== 'POST') {
     return new Response('Method Not Allowed', { status: 405 });
@@ -34,7 +43,7 @@ export default async (req: Request, _context: Context) => {
     await resend.emails.send({
       from: 'CL Contact <hello@rwcoder.com>',
       to: toEmail,
-      subject: `New message from ${name}`,
+      subject: encodeSubject(`New message from ${name}`),
       html: `<p>You have a new message from ${name} (${email}):</p><p>${message}</p>`,
     });
 
@@ -42,7 +51,7 @@ export default async (req: Request, _context: Context) => {
     await resend.emails.send({
       from: 'Vladimir Vaca <hello@rwcoder.com>',
       to: email,
-      subject: 'Thank you for your message!',
+      subject: encodeSubject('Thank you for your message!'),
       html: `<p>Hi ${name},</p><p>Thank you for getting in touch! I've received your message and I'm excited to connect with you. I'll review your message and get back to you soon.</p><p>In the meantime, feel free to connect with me on my social networks.</p><p>Best regards,<br>Vladimir Vaca</p>`,
     });
 

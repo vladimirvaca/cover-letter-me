@@ -13,7 +13,7 @@ const Experience: React.FC = () => {
             {COMPANIES.map((company) => (
               <div
                 key={company.name}
-                className="flex flex-col items-center gap-4 transition-transform duration-300 hover:scale-105 cursor-default"
+                className="flex flex-col items-center gap-4 cursor-default"
               >
                 <div className={`${company.size} flex items-center justify-center`}>
                   <img
