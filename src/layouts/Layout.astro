@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE_META } from '../constants/Constants';
 ---
 
 <!doctype html>
@@ -9,7 +10,22 @@ import '../styles/global.css';
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Vladimir Vaca CL</title>
+    <title>{SITE_META.title}</title>
+    <meta name="description" content={SITE_META.description} />
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content={SITE_META.title} />
+    <meta property="og:description" content={SITE_META.description} />
+    <meta property="og:type" content={SITE_META.type ?? 'website'} />
+    <meta property="og:url" content={SITE_META.url} />
+    <meta property="og:image" content={SITE_META.image} />
+    <meta property="og:site_name" content={SITE_META.siteName ?? SITE_META.title} />
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content={SITE_META.twitterCard ?? 'summary_large_image'} />
+    <meta name="twitter:site" content={SITE_META.twitterSite ?? ''} />
+    <meta name="twitter:creator" content={SITE_META.twitterCreator ?? ''} />
+    <meta name="twitter:title" content={SITE_META.title} />
+    <meta name="twitter:description" content={SITE_META.description} />
+    <meta name="twitter:image" content={SITE_META.image} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

@@ -1,4 +1,4 @@
-import type { Company, Project, Section, TechCategory } from '../types/types.ts';
+import type { Company, Project, Section, TechCategory, SiteMeta } from '../types/types.ts';
 import ioetLogo from '../assets/icons/ioet.png';
 import ibmLogo from '../assets/icons/ibm.png';
 import thoughtworksLogo from '../assets/icons/thoughtworks.png';
@@ -95,3 +95,15 @@ export const SOCIAL_MEDIA = [
   },
   { name: 'GitHub', url: 'https://github.com/vladimirvaca', icon: githubIcon.src },
 ];
+
+export const SITE_META: SiteMeta = {
+  title: 'Vladimir Vaca - Cover Letter & Portfolio',
+  description: 'Portfolio and cover letter site for Vladimir Vaca. Showcasing experience, tech stack, and projects.',
+  url: 'https://rwcoder.com',
+  image: '/assets/img/profile.jpeg',
+  type: 'website',
+  siteName: 'Vladimir Vaca - Cover Letter & Portfolio',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@rwcoder',
+  twitterCreator: '@rwcoder',
+};

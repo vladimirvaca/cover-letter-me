@@ -30,3 +30,15 @@ export interface Company {
   width?: number;
   height?: number;
 }
+
+export interface SiteMeta {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  type?: string;
+  siteName?: string;
+  twitterCard?: string;
+  twitterSite?: string;
+  twitterCreator?: string;
+}
