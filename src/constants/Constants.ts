@@ -100,7 +100,7 @@ export const SITE_META: SiteMeta = {
   title: 'Vladimir Vaca - Cover Letter & Portfolio',
   description: 'Portfolio and cover letter site for Vladimir Vaca. Showcasing experience, tech stack, and projects.',
   url: 'https://rwcoder.com',
-  image: 'https://rwcoder.com/profile-og.jpeg',
+  image: 'https://rwcoder.com/profile-og.png',
   type: 'website',
   siteName: 'Vladimir Vaca - Cover Letter & Portfolio',
   twitterCard: 'summary_large_image',
