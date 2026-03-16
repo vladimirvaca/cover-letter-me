@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useLayoutEffect } from 'react';
+import React, { useEffect, useState, useCallback, useLayoutEffect } from 'react';
 import Modal from 'react-modal';
 
 interface PdfViewerModalProps {
@@ -8,6 +8,12 @@ interface PdfViewerModalProps {
 }
 
 const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose, pdfUrl }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (isOpen) setIsLoading(true);
+  }, [isOpen, pdfUrl]);
+
   useLayoutEffect(() => {
     // Set app element for modal accessibility
     const rootElement = document.getElementById('root');
@@ -56,12 +62,23 @@ const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ isOpen, onRequestClose,
       </div>
 
       {/* PDF Viewer using native browser PDF viewer */}
-      <div className="flex-1 overflow-hidden bg-gray-100 dark:bg-surface-darker min-h-0">
+      <div className="flex-1 overflow-hidden bg-gray-100 dark:bg-surface-darker min-h-0 relative">
+        {isLoading && (
+          <div
+            role="status"
+            aria-label="Loading PDF"
+            className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-gray-100 dark:bg-surface-darker"
+          >
+            <div className="size-12 rounded-full border-4 border-black/10 dark:border-white/10 border-t-primary animate-spin" />
+            <span className="text-sm font-medium text-black/50 dark:text-white/50">Loading PDF…</span>
+          </div>
+        )}
         <iframe
           src={`${pdfUrl}#toolbar=0&navpanes=0&view=FitH`}
           className="w-full h-full border-none"
           title="CV PDF Viewer"
           allowFullScreen
+          onLoad={() => setIsLoading(false)}
         />
       </div>
     </Modal>
