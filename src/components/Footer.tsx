@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { SOCIAL_MEDIA } from '../constants/Constants.ts';
-import ContactForm from './ContactForm.tsx';
 
-const FooterContent: React.FC = () => {
+// Split ContactForm into its own chunk – only fetched when the modal is opened
+const ContactForm = lazy(() => import('./ContactForm.tsx'));
+
+const Footer: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  // reCAPTCHA provider (and its SDK script) mounts only after the first click
+  const [reCaptchaReady, setReCaptchaReady] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+
+  const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY as string | undefined;
 
   useEffect(() => {
     setHasMounted(true);
@@ -14,10 +20,34 @@ const FooterContent: React.FC = () => {
 
   const handleSuccess = (message: string) => {
     setSuccessMessage(message);
-    setTimeout(() => {
-      setSuccessMessage('');
-    }, 8000);
+    setTimeout(() => setSuccessMessage(''), 8000);
   };
+
+  const handleOpenModal = () => {
+    // Trigger reCAPTCHA provider mount on first interaction
+    setReCaptchaReady(true);
+    setIsModalOpen(true);
+  };
+
+  const contactForm = hasMounted && reCaptchaReady && (
+    <Suspense fallback={null}>
+      {recaptchaSiteKey ? (
+        <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
+          <ContactForm
+            isOpen={isModalOpen}
+            onRequestClose={() => setIsModalOpen(false)}
+            onSuccess={handleSuccess}
+          />
+        </GoogleReCaptchaProvider>
+      ) : (
+        <ContactForm
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onSuccess={handleSuccess}
+        />
+      )}
+    </Suspense>
+  );
 
   return (
     <>
@@ -32,7 +62,7 @@ const FooterContent: React.FC = () => {
           </p>
           <button
             className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform hover:-translate-y-1 shadow-xl shadow-primary/25"
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleOpenModal}
           >
             <span className="material-symbols-outlined">mail</span>
             Say Hello
@@ -54,7 +84,15 @@ const FooterContent: React.FC = () => {
                 rel="noopener noreferrer"
               >
                 <span className="sr-only">{social.name}</span>
-                <img src={social.icon} alt="" className="h-8 w-8 dark:invert" />
+                <img
+                  src={social.icon}
+                  alt=""
+                  className="h-8 w-8 dark:invert"
+                  width={32}
+                  height={32}
+                  loading="lazy"
+                  decoding="async"
+                />
               </a>
             ))}
           </div>
@@ -63,29 +101,8 @@ const FooterContent: React.FC = () => {
           </div>
         </div>
       </footer>
-      {hasMounted && (
-        <ContactForm
-          isOpen={isModalOpen}
-          onRequestClose={() => setIsModalOpen(false)}
-          onSuccess={handleSuccess}
-        />
-      )}
+      {contactForm}
     </>
-  );
-};
-
-const Footer: React.FC = () => {
-  const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
-
-  if (!recaptchaSiteKey) {
-    console.error('reCAPTCHA site key is not set in environment variables.');
-    return <FooterContent />;
-  }
-
-  return (
-    <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
-      <FooterContent />
-    </GoogleReCaptchaProvider>
   );
 };
 

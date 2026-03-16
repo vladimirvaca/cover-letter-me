@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Terminal from './Terminal';
-import PdfViewerModal from './PdfViewerModal';
+import React, { useState, lazy, Suspense } from 'react';
 import profileImage from '../assets/img/profile.jpeg';
+
+const PdfViewerModal = lazy(() => import('./PdfViewerModal'));
 
 const Developer: React.FC = () => {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
@@ -22,6 +22,11 @@ const Developer: React.FC = () => {
                     alt="Portrait of a smiling male developer"
                     className="h-full w-full object-cover"
                     src={profileImage.src}
+                    width={160}
+                    height={160}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
               </div>
@@ -37,13 +42,6 @@ const Developer: React.FC = () => {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4 justify-center w-full">
-                {/*<a
-                  href="#projects"
-                  className="flex min-w-35 cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-8 bg-primary text-white text-base font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20"
-                >
-                  <span>View Projects</span>
-                  <span className="material-symbols-outlined text-lg">arrow_downward</span>
-                </a> // Removed for now as Projects section */}
                 <button
                   className="flex min-w-35 cursor-pointer items-center justify-center gap-2 rounded-full h-12 px-8 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20 text-black dark:text-white text-base font-bold transition-all border border-black/10 dark:border-white/10 shadow-sm"
                   onClick={openPdfModal}
@@ -58,13 +56,15 @@ const Developer: React.FC = () => {
         </div>
       </section>
 
-      <Terminal />
-
-      <PdfViewerModal
-        isOpen={isPdfModalOpen}
-        onRequestClose={closePdfModal}
-        pdfUrl="/ramiro_vladimir_vaca_cv.pdf"
-      />
+      {isPdfModalOpen && (
+        <Suspense fallback={null}>
+          <PdfViewerModal
+            isOpen={isPdfModalOpen}
+            onRequestClose={closePdfModal}
+            pdfUrl="/ramiro_vladimir_vaca_cv.pdf"
+          />
+        </Suspense>
+      )}
     </>
   );
 };

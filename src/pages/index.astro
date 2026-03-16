@@ -2,22 +2,25 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.tsx';
 import Developer from '../components/Developer.tsx';
-import TechStack from '../components/TechStack.tsx';
-import Experience from '../components/Experience.tsx';
-// import Projects from '../components/Projects.tsx';
-
+import Terminal from '../components/Terminal.astro';
+import TechStack from '../components/TechStack.astro';
+import Experience from '../components/Experience.astro';
 import Footer from '../components/Footer.tsx';
 ---
 
 <Layout>
   <div class="relative flex min-h-screen w-full flex-col group/design-root">
-    <Header client:load />
+    <!-- client:idle – theme toggle and nav are not critical-path; hydrates during browser idle time -->
+    <Header client:idle />
     <main class="layout-container flex h-full grow flex-col items-center">
+      <!-- client:load – above-fold hero with interactive PDF modal -->
       <Developer client:load />
+      <!-- Static Astro components – zero JS hydration cost -->
+      <Terminal />
       <TechStack />
       <Experience />
-      { /* <Projects /> Commented for now */ }
-      <Footer client:load />
+      <!-- client:visible – defers React + reCAPTCHA SDK until footer scrolls into view -->
+      <Footer client:visible />
     </main>
   </div>
 </Layout>

@@ -26,17 +26,40 @@ import { SITE_META } from '../constants/Constants';
     <meta name="twitter:title" content={SITE_META.title} />
     <meta name="twitter:description" content={SITE_META.description} />
     <meta name="twitter:image" content={SITE_META.image} />
+    <!-- Preconnect for critical font origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- DNS prefetch for icon CDN (non-critical, loaded async below) -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <!-- Display font – render-blocking but required for layout stability -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!--
+      Material Symbols – subsetted to only the 11 icons used in this site.
+      display=block avoids FOUT for icon glyphs.
+    -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0&icon_names=close,cloud,dark_mode,desktop_mac,dns,layers,light_mode,mail,menu,terminal,visibility&display=block"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <!--
+      Devicon – loaded asynchronously so it does NOT block first paint.
+      The noscript fallback covers environments without JavaScript.
+    -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+      />
+    </noscript>
     <script is:inline>
       if (
         localStorage.getItem('theme') === 'dark' ||

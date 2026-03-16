@@ -1,0 +1,106 @@
+---
+const experience = [
+  '10+ years of experience',
+  'Mentored junior engineers',
+  'Worked with agile teams',
+  'Amazing international projects',
+];
+
+const bestPractices = [
+  'Clean code',
+  'Design patterns',
+  'SOLID principles',
+  'Linting & formatting',
+  'Code reviews',
+  'Unit testing',
+  'Integration testing',
+  'End-to-end testing',
+  'Automated testing',
+  'CI/CD',
+];
+
+const languages = ['English - C1 Level', 'Spanish - Native'];
+---
+
+<div class="w-full max-w-240 px-4 md:px-10 mt-8 mb-8 md:mb-20 block">
+  <div
+    class="rounded-xl bg-[#0e1210] border border-black/5 dark:border-white/10 p-5 shadow-2xl font-mono text-sm overflow-hidden ring-1 ring-black/5"
+  >
+    <!-- Window chrome -->
+    <div class="flex items-center gap-2 mb-3 pl-2">
+      <div class="size-3 rounded-full bg-red-500"></div>
+      <div class="size-3 rounded-full bg-yellow-500"></div>
+      <div class="size-3 rounded-full bg-green-500"></div>
+      <span class="text-sm text-gray-300 font-mono select-none pl-6" aria-label="Filename"
+        >engineer.ts</span
+      >
+    </div>
+    <div class="border-t border-gray-700 dark:border-white/10 mb-4" aria-hidden="true"></div>
+
+    <!-- Code body -->
+    <div class="text-gray-400">
+      <span class="text-purple-400">const</span>
+      {' '}<span class="text-yellow-300">engineer</span>
+      {' '}<span class="text-purple-400">=</span> &#123;<br />
+
+      <span style="display:inline-block;width:2ch" aria-hidden="true"></span
+      ><span class="text-blue-300">experience</span>: [<br />
+      {
+        experience.map((exp, idx) => (
+          <Fragment>
+            <span style="display:inline-block;width:4ch" aria-hidden="true"></span>
+            <span class="text-green-400">'{exp}'</span>
+            {idx < experience.length - 1 ? ',' : ''}
+            <br />
+          </Fragment>
+        ))
+      }
+      <span style="display:inline-block;width:2ch" aria-hidden="true"></span>],<br />
+
+      <span style="display:inline-block;width:2ch" aria-hidden="true"></span
+      ><span class="text-blue-300">bestPractices</span>: [<br />
+      {
+        bestPractices.map((bp, idx) => (
+          <Fragment>
+            <span style="display:inline-block;width:4ch" aria-hidden="true"></span>
+            <span class="text-green-400">'{bp}'</span>
+            {idx < bestPractices.length - 1 ? ',' : ''}
+            <br />
+          </Fragment>
+        ))
+      }
+      <span style="display:inline-block;width:2ch" aria-hidden="true"></span>],<br />
+
+      <span style="display:inline-block;width:2ch" aria-hidden="true"></span
+      ><span class="text-blue-300">work</span>: [<span class="text-green-400">'remote'</span>,
+      {' '}<span class="text-green-400">'full-time'</span>],<br />
+
+      <span style="display:inline-block;width:2ch" aria-hidden="true"></span
+      ><span class="text-blue-300">languages</span>: [<br />
+      {
+        languages.map((lang, idx) => (
+          <Fragment>
+            <span style="display:inline-block;width:4ch" aria-hidden="true"></span>
+            <span class="text-green-400">'{lang}'</span>
+            {idx < languages.length - 1 ? ',' : ''}
+            <br />
+          </Fragment>
+        ))
+      }
+      <span style="display:inline-block;width:2ch" aria-hidden="true"></span>],<br />
+      &#125;;<br />
+      <br />
+      <span class="text-yellow-300">engineer</span>.<span class="text-blue-400">start</span>();<br />
+      <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span
+        class="text-green-400">'Engineering in action: Building, testing 🛠️'</span
+      >);<br />
+      <br />
+      <span class="text-yellow-300">engineer</span>.<span class="text-blue-400">deploy</span>();<br
+      />
+      <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span
+        class="text-green-400">'Mission accomplished: Code shipped, impact delivered 🚀'</span
+      >);<br />
+    </div>
+  </div>
+</div>
+
